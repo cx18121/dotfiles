@@ -7,6 +7,10 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "drag_and_drop_selection": {
+    "enabled": false,
+    "delay": 300
+  },
   "icon_theme": {
     "mode": "dark",
     "light": "Zed (Default)",
