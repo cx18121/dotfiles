@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+# macOS non-default settings
+# Run: chmod +x macos && ./macos
+
+set -e
+
+# === Dock ===
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock show-recents -bool false
+defaults write com.apple.dock tilesize -int 53
+
+# === Screenshots ===
+defaults write com.apple.screencapture location -string "~/Screenshots"
+defaults write com.apple.screencapture style -string "selection"
+
+# === Finder ===
+defaults write com.apple.finder AppleShowAllFiles -bool true
+defaults write com.apple.finder FXArrangeGroupViewBy -string "Name"
+defaults write com.apple.finder FXivloudDriveDesktop -bool false
+defaults write com.apple.finder FXivloudDocumentsDesktop -bool false
+defaults write com.apple.finder FXPreferredGroupBy -string "Name"
+defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
+
+# === Trackpad ===
+defaults write com.apple.trackpad forceClick -bool false
+defaults write com.apple.trackpad scaling -float 2.0
+defaults write NSGlobalDomain com.apple.trackpad.scrolling -float 0.5881999999999999
+
+# === Keyboard ===
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 20
+
+# === Terminal ===
+defaults write com.apple.Terminal "Default Window Settings" -string "Clear Dark"
+defaults write com.apple.Terminal "Startup Window Settings" -string "Clear Dark"
+defaults write com.apple.Terminal SecureKeyboardEntry -bool false
+
+# === Appearance ===
+defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
+defaults write NSGlobalDomain AppleScrollerDamping -int 2
+
+# === Sound ===
+defaults write NSGlobalDomain com.apple.sound.beep.flash -bool false
+defaults write com.apple.sound.beep.volume -float 0.5346594
+
+# === Siri ===
+defaults write com.apple.Siri ContinuousSpellCheckingEnabled -bool false
+defaults write com.apple.Siri ConfirmSiriInvokedViaEitherCmdTwice -bool false
+defaults write com.apple.Siri GrammarCheckingEnabled -bool true
+
+# === Text Input ===
+defaults write com.apple.TextInputMenu visible -bool true
+
+# === Login Window ===
+defaults write com.apple.loginwindow MiniBuddyLaunch -bool false
+
+# Kill affected apps
+killall Dock Finder SystemUIServer 2>/dev/null || true
+echo "Done. Some changes require logout/restart."
