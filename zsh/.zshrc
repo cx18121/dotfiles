@@ -76,3 +76,11 @@ claudem2() {
 }
 
 export PATH="/Users/charliexue/.local/share/fnm/node-versions/v24.14.1/installation/bin:$PATH"
+
+# bun completions
+[ -s "/Users/charliexue/.bun/_bun" ] && source "/Users/charliexue/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="/Users/charliexue/.local/share/fnm/node-versions/v24.14.1/installation/bin:$PATH"
