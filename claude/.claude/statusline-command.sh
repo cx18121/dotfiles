@@ -68,22 +68,22 @@ if [ -n "$used_pct" ]; then
   ctx_bar="${bar_color}${bar_filled}${DIM}${BRIGHT_BLACK}${bar_empty}${RESET}"
 fi
 
-# --- Git branch (bright-black, matches [git_branch] style=bright-black) ---
+# --- Git branch + repo root ---
+# Resolve the repo top-level once ($_git_dir); empty when not in a repo, so it
+# doubles as the existence check and is reused by the status block below.
 git_branch=""
-if git -C "$HOME/$(printf '%s' "$cwd" | sed 's|^~||')" rev-parse --git-dir > /dev/null 2>&1; then
-  _git_dir=$(git -C "$(printf '%s' "$cwd" | sed "s|^~|$HOME|")" rev-parse --show-toplevel 2>/dev/null)
-  if [ -n "$_git_dir" ]; then
-    _branch=$(git --git-dir="$_git_dir/.git" branch --show-current 2>/dev/null)
-    [ -z "$_branch" ] && _branch=$(git --git-dir="$_git_dir/.git" rev-parse --short HEAD 2>/dev/null)
-    git_branch="$_branch"
-  fi
+_git_dir=$(git -C "$(printf '%s' "$cwd" | sed "s|^~|$HOME|")" rev-parse --show-toplevel 2>/dev/null)
+if [ -n "$_git_dir" ]; then
+  _branch=$(git --git-dir="$_git_dir/.git" branch --show-current 2>/dev/null)
+  [ -z "$_branch" ] && _branch=$(git --git-dir="$_git_dir/.git" rev-parse --short HEAD 2>/dev/null)
+  git_branch="$_branch"
 fi
 
 # --- Git status (cyan with pink delimiters, matches [git_status]) ---
 git_status_str=""
 git_status_color="$CYAN"
 if [ -n "$git_branch" ]; then
-  _git_dir=$(git -C "$(printf '%s' "$cwd" | sed "s|^~|$HOME|")" rev-parse --show-toplevel 2>/dev/null)
+  # $_git_dir already resolved in the branch block above (reused, not recomputed)
   if [ -n "$_git_dir" ]; then
     _dirty=$(git --git-dir="$_git_dir/.git" --work-tree="$_git_dir" status --porcelain 2>/dev/null | wc -l | tr -d ' ')
     _stash=$(git --git-dir="$_git_dir/.git" stash list 2>/dev/null | wc -l | tr -d ' ')
