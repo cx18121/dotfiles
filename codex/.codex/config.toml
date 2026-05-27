@@ -1,0 +1,62 @@
+model = "gpt-5.5"
+model_reasoning_effort = "medium"
+[projects."/Users/charliexue/School/Clubs/genai/sparrow"]
+trust_level = "trusted"
+
+[projects."/"]
+trust_level = "trusted"
+
+[projects."/Users/charliexue/School/cs_misc/personal-website"]
+trust_level = "trusted"
+
+[projects."/Users/charliexue/School/cs_misc/trading"]
+trust_level = "trusted"
+
+[projects."/Users/charliexue/School/cs_misc/auto-shorts"]
+trust_level = "trusted"
+
+[projects."/Users/charliexue/School/cs_misc/philly-vibe-map"]
+trust_level = "trusted"
+
+[projects."/Users/charliexue/School/cs_misc"]
+trust_level = "trusted"
+
+[projects."/Users/charliexue/School/cs_misc/skyops"]
+trust_level = "trusted"
+
+[projects."/Users/charliexue/School/cs_misc/vulnscan"]
+trust_level = "trusted"
+
+[projects."/Users/charliexue/School/cs_misc/gatekeeper"]
+trust_level = "trusted"
+
+[projects."/Users/charliexue/School/cs_misc/podium"]
+trust_level = "trusted"
+
+[projects."/Users/charliexue/School/Comps/spectre"]
+trust_level = "trusted"
+
+[projects."/Users/charliexue/School/cs_misc/coffee-chat-automation"]
+trust_level = "trusted"
+
+[projects."/Users/charliexue/School/cs_misc/resume"]
+trust_level = "trusted"
+
+[projects."/private/tmp/codex-spike"]
+trust_level = "trusted"
+
+[projects."/Users/charliexue"]
+trust_level = "trusted"
+
+[projects."/Users/charliexue/Work/pango/backend-app"]
+trust_level = "trusted"
+
+[tui]
+status_line = ["current-dir", "git-branch", "pull-request-number", "branch-changes", "model-with-reasoning", "context-used", "permissions", "task-progress"]
+status_line_use_colors = true
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+
+[features]
+goals = true
