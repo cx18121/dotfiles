@@ -22,6 +22,7 @@ alias claude='unset ANTHROPIC_BASE_URL ANTHROPIC_AUTH_TOKEN ANTHROPIC_MODEL \
 alias python='python3'
 alias pip='pip3'
 alias ls="lsd"
+alias codex="codex --yolo"
 
 # Completions
 fpath=(/opt/homebrew/share/zsh-completions $fpath)
@@ -84,3 +85,5 @@ export PATH="/Users/charliexue/.local/share/fnm/node-versions/v24.14.1/installat
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="/Users/charliexue/.local/share/fnm/node-versions/v24.14.1/installation/bin:$PATH"
+
+export PATH=/opt/homebrew/share/google-cloud-sdk/bin:"$PATH"

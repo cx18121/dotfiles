@@ -45,3 +45,5 @@ venv/
 *.synctex.gz
 *.fls
 *.fdb_latexmk
+
+**/.claude/settings.local.json
