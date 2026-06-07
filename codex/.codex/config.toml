@@ -1,5 +1,7 @@
 model = "gpt-5.5"
 model_reasoning_effort = "medium"
+notify = ["/Users/charliexue/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+
 [projects."/Users/charliexue/School/Clubs/genai/sparrow"]
 trust_level = "trusted"
 
@@ -51,6 +53,12 @@ trust_level = "trusted"
 [projects."/Users/charliexue/Work/pango/backend-app"]
 trust_level = "trusted"
 
+[projects."/Users/charliexue/School/cs_misc/localpen"]
+trust_level = "trusted"
+
+[projects."/Users/charliexue/School/Cybersec/destiny-bear"]
+trust_level = "trusted"
+
 [tui]
 status_line = ["current-dir", "git-branch", "pull-request-number", "branch-changes", "model-with-reasoning", "context-used", "permissions", "task-progress"]
 status_line_use_colors = true
@@ -60,3 +68,40 @@ status_line_use_colors = true
 
 [features]
 goals = true
+js_repl = false
+
+[marketplaces.openai-bundled]
+last_updated = "2026-06-06T05:19:51Z"
+source_type = "local"
+source = "/Users/charliexue/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[desktop]
+ambient-suggestions-enabled = true
+conversationDetailMode = "STEPS_COMMANDS"
+
+[desktop.open-in-target-preferences]
+global = "ghostty"
+
+[desktop.open-in-target-preferences.perPath]
+"/Users/charliexue/School/Clubs/genai/GenAI-Internal-Project---Cold-Email-Automation" = "ghostty"
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/Codex.app/Contents/Resources/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = ""
+NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/charliexue/.codex"
+CODEX_HOME = "/Users/charliexue/.codex"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "4b6bfaf4ed2ce9b5cd68e60a61642eb4927a36306ba8c8993f6058607b3530fb"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
