@@ -15,6 +15,7 @@ RED='\033[31m'
 DIM='\033[2m'
 BOLD='\033[1m'
 RESET='\033[0m'
+ESC=$(printf '\033')
 
 input=$(cat)
 
@@ -23,10 +24,10 @@ model=$(printf '%s' "$input" | jq -r '.model.display_name // .model.id // "unkno
 
 # --- Required: cwd (blue, matches [directory] style=blue) ---
 cwd=$(printf '%s' "$input" | jq -r '.cwd // .workspace.current_dir // ""')
-# Abbreviate $HOME to ~
+cwd_real="$cwd"
+# Abbreviate $HOME to ~ for the non-repo fallback display; $cwd_real keeps the absolute
+# path for git lookups and the repo-relative location computed below.
 cwd=$(printf '%s' "$cwd" | sed "s|^$HOME|~|")
-# Display: truncate to last 3 path segments (full $cwd kept for git detection below)
-cwd_display=$(printf '%s' "$cwd" | awk -F/ '{ if (NF>4) printf "…/%s/%s/%s", $(NF-2),$(NF-1),$NF; else printf "%s", $0 }')
 
 # --- Context usage: colored progress bar + percentage ---
 ctx_bar=""
@@ -72,11 +73,31 @@ fi
 # Resolve the repo top-level once ($_git_dir); empty when not in a repo, so it
 # doubles as the existence check and is reused by the status block below.
 git_branch=""
-_git_dir=$(git -C "$(printf '%s' "$cwd" | sed "s|^~|$HOME|")" rev-parse --show-toplevel 2>/dev/null)
+_git_dir=$(git -C "$cwd_real" rev-parse --show-toplevel 2>/dev/null)
 if [ -n "$_git_dir" ]; then
   _branch=$(git --git-dir="$_git_dir/.git" branch --show-current 2>/dev/null)
   [ -z "$_branch" ] && _branch=$(git --git-dir="$_git_dir/.git" rev-parse --short HEAD 2>/dev/null)
   git_branch="$_branch"
+fi
+
+# --- Location label: repo name + path within the repo (worktree-aware) ---
+# A worktree path is a UUID plus a dir that just repeats the branch, so the raw path tells
+# you nothing the branch doesn't. Instead show the repo name (from the common git dir, which
+# resolves to the MAIN repo for worktrees and to the toplevel for normal clones) plus where
+# you are inside it. Outside a repo, fall back to the ~-abbreviated path.
+loc_base="$cwd"
+if [ -n "$_git_dir" ]; then
+  _common=$(git -C "$cwd_real" rev-parse --git-common-dir 2>/dev/null)
+  case "$_common" in
+    /*) : ;;
+    *) _common="$cwd_real/$_common" ;;
+  esac
+  _repo=$(basename "$(dirname "$_common")")
+  _rel=${cwd_real#"$_git_dir"}
+  _rel=${_rel#/}
+  if [ -n "$_repo" ]; then
+    [ -n "$_rel" ] && loc_base="$_repo/$_rel" || loc_base="$_repo"
+  fi
 fi
 
 # --- Git status (cyan with pink delimiters, matches [git_status]) ---
@@ -121,15 +142,6 @@ fi
 #   location ( cwd  branch  (status) )  ·  model ( name (paren) )  ·  context ( bar pct )  [·  venv]
 SEP=" ${DIM}${BRIGHT_BLACK}·${RESET} "
 
-# Group: location — cwd (blue) + git branch + git status (bright-black)
-g_loc=$(printf "${BLUE}%s${RESET}" "$cwd_display")
-if [ -n "$git_branch" ]; then
-  g_loc="${g_loc} $(printf "${CYAN}${BOLD}\356\202\240 %s${RESET}" "$git_branch")"
-fi
-if [ -n "$git_status_str" ]; then
-  g_loc="${g_loc} $(printf "${git_status_color}(%s)${RESET}" "$git_status_str")"
-fi
-
 # Group: model — purple name + dim parenthetical (e.g. "Opus 4.7" + "(1M context)")
 model_main=$(printf '%s' "$model" | sed -E 's/ *\(.*$//')
 model_paren=$(printf '%s' "$model" | grep -oE '\([^)]*\)[[:space:]]*$' 2>/dev/null)
@@ -162,11 +174,53 @@ if [ -n "$venv_str" ]; then
   g_venv=$(printf "${DIM}${BRIGHT_BLACK}%s${RESET}" "$venv_str")
 fi
 
-# Join non-empty groups with the uniform separator (location always present)
-out="$g_loc"
-[ -n "$g_model" ] && out="${out}${SEP}${g_model}"
-[ -n "$g_ctx" ]   && out="${out}${SEP}${g_ctx}"
-[ -n "$g_lines" ] && out="${out}${SEP}${g_lines}"
-[ -n "$g_venv" ]  && out="${out}${SEP}${g_venv}"
+# Build the location group (cwd + branch + status) from the current $cwd_display and
+# join all non-empty groups into $out. Re-runnable so the directory can be re-trimmed.
+assemble() {
+  g_loc=$(printf "${BLUE}%s${RESET}" "$cwd_display")
+  if [ -n "$git_branch" ]; then
+    g_loc="${g_loc} $(printf "${CYAN}${BOLD}\356\202\240 %s${RESET}" "$git_branch")"
+  fi
+  if [ -n "$git_status_str" ]; then
+    g_loc="${g_loc} $(printf "${git_status_color}(%s)${RESET}" "$git_status_str")"
+  fi
+
+  out="$g_loc"
+  [ -n "$g_model" ] && out="${out}${SEP}${g_model}"
+  [ -n "$g_ctx" ]   && out="${out}${SEP}${g_ctx}"
+  [ -n "$g_lines" ] && out="${out}${SEP}${g_lines}"
+  [ -n "$g_venv" ]  && out="${out}${SEP}${g_venv}"
+}
+
+# Visible (printed) width of a string: interpret escapes, strip ANSI color codes, count chars.
+vwidth() {
+  printf '%b' "$1" | LC_ALL=en_US.UTF-8 sed "s/${ESC}\[[0-9;]*m//g" | tr -d '\n' \
+    | LC_ALL=en_US.UTF-8 wc -m | tr -d ' '
+}
+
+# Width budget: keep model + context (right side) intact; the directory is the only elastic
+# part. If the full line overruns $COLUMNS, trim the directory FROM THE LEFT to fit, keeping
+# the rightmost (most specific) path segment. Claude Code exports COLUMNS = terminal width.
+cwd_display="$loc_base"
+assemble
+
+cols="${COLUMNS:-0}"
+if [ "$cols" -gt 0 ] 2>/dev/null; then
+  full_w=$(vwidth "$out")
+  dir_w=$(printf '%s' "$cwd_display" | LC_ALL=en_US.UTF-8 wc -m | tr -d ' ')
+  # Right edge needs a little slack (left gutter + wide-glyph undercount).
+  avail=$((cols - 3 - (full_w - dir_w)))
+  [ "$avail" -lt 10 ] && avail=10
+  if [ "$dir_w" -gt "$avail" ]; then
+    keep=$((avail - 1))
+    tail=$(printf '%s' "$loc_base" | awk -v n="$keep" '{ L=length($0); if (L>n) print substr($0, L-n+1); else print $0 }')
+    cwd_display="…${tail}"
+    assemble
+  fi
+else
+  # No terminal width available (older client / non-tty): fall back to last 3 path segments.
+  cwd_display=$(printf '%s' "$loc_base" | awk -F/ '{ if (NF>4) printf "…/%s/%s/%s", $(NF-2),$(NF-1),$NF; else printf "%s", $0 }')
+  assemble
+fi
 
 printf '%b\n' "$out"
