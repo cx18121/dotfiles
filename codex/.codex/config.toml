@@ -1,6 +1,9 @@
 model = "gpt-5.5"
-model_reasoning_effort = "medium"
-notify = ["/Users/charliexue/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+model_reasoning_effort = "xhigh"
+notify = [
+  "/Users/charliexue/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient",
+  "turn-ended"
+]
 
 [projects."/Users/charliexue/School/Clubs/genai/sparrow"]
 trust_level = "trusted"
@@ -59,19 +62,37 @@ trust_level = "trusted"
 [projects."/Users/charliexue/School/Cybersec/destiny-bear"]
 trust_level = "trusted"
 
+[projects."/Users/charliexue/School/Comps/eth-global"]
+trust_level = "trusted"
+
+[projects."/Users/charliexue/.superset/pango"]
+trust_level = "trusted"
+
+[projects."/Users/charliexue/School/cs_misc/settl"]
+trust_level = "trusted"
+
 [tui]
-status_line = ["current-dir", "git-branch", "pull-request-number", "branch-changes", "model-with-reasoning", "context-used", "permissions", "task-progress"]
+status_line = [
+  "project-name",
+  "pull-request-number",
+  "branch-changes",
+  "model-with-reasoning",
+  "context-used",
+  "permissions",
+  "task-progress"
+]
 status_line_use_colors = true
 
-[tui.model_availability_nux]
-"gpt-5.5" = 4
+  [tui.model_availability_nux]
+  "gpt-5.5" = 4
 
 [features]
 goals = true
 js_repl = false
+hooks = true
 
 [marketplaces.openai-bundled]
-last_updated = "2026-06-06T05:19:51Z"
+last_updated = "2026-06-25T06:36:47Z"
 source_type = "local"
 source = "/Users/charliexue/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
@@ -79,29 +100,43 @@ source = "/Users/charliexue/.codex/.tmp/bundled-marketplaces/openai-bundled"
 ambient-suggestions-enabled = true
 conversationDetailMode = "STEPS_COMMANDS"
 
-[desktop.open-in-target-preferences]
-global = "ghostty"
+  [desktop.open-in-target-preferences]
+  global = "ghostty"
 
-[desktop.open-in-target-preferences.perPath]
-"/Users/charliexue/School/Clubs/genai/GenAI-Internal-Project---Cold-Email-Automation" = "ghostty"
+    [desktop.open-in-target-preferences.perPath]
+    "/Users/charliexue/School/Clubs/genai/GenAI-Internal-Project---Cold-Email-Automation" = "ghostty"
 
 [plugins."browser@openai-bundled"]
 enabled = true
 
+[plugins."sites@openai-bundled"]
+enabled = true
+
 [mcp_servers.node_repl]
-args = []
+args = [ ]
 command = "/Applications/Codex.app/Contents/Resources/node_repl"
 startup_timeout_sec = 120
 
-[mcp_servers.node_repl.env]
-NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
-NODE_REPL_NODE_MODULE_DIRS = ""
-NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/node"
-NODE_REPL_TRUSTED_CODE_PATHS = "/Users/charliexue/.codex"
-CODEX_HOME = "/Users/charliexue/.codex"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "4b6bfaf4ed2ce9b5cd68e60a61642eb4927a36306ba8c8993f6058607b3530fb"
-BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
-NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
-NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
-BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
+  [mcp_servers.node_repl.env]
+  NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+  NODE_REPL_NODE_MODULE_DIRS = ""
+  NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/node"
+  NODE_REPL_TRUSTED_CODE_PATHS = "/Users/charliexue/.codex"
+  CODEX_HOME = "/Users/charliexue/.codex"
+  NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "4b6bfaf4ed2ce9b5cd68e60a61642eb4927a36306ba8c8993f6058607b3530fb"
+  BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+  NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+  NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+  BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+  CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
+
+[hooks.state]
+
+[hooks.state."/Users/charliexue/.codex/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:53f17ee030a0eb3a41c12dcaf061ddf62e62b9892e1f6d0f9daf7bbd3b5f8c9c"
+
+[hooks.state."/Users/charliexue/.codex/hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:d31482bbabb7cf4adcc1c4cfff5500962b8660f81a29e9e5bd10831098ef6fd9"
+
+[hooks.state."/Users/charliexue/.codex/hooks.json:stop:0:0"]
+trusted_hash = "sha256:afe04d86982e9326b7b95ad99da5f1790c9d5e53ad38beacd460a2b54fb3ef7a"
