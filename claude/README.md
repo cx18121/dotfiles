@@ -1,5 +1,9 @@
 # Claude Code config
 
+## CLAUDE.md
+
+Global rules for all projects, symlinked to `~/.claude/CLAUDE.md`.
+
 ## statusline-command.sh
 
 Custom Claude Code status line. Mirrors Starship styling and shows:
