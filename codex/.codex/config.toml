@@ -1,5 +1,5 @@
 model = "gpt-5.6-sol"
-model_reasoning_effort = "medium"
+model_reasoning_effort = "high"
 notify = [
     "/Users/charliexue/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient",
     "turn-ended",
@@ -73,6 +73,12 @@ trust_level = "trusted"
 [projects."/Users/charliexue/School/cs_misc/settl"]
 trust_level = "trusted"
 
+[projects."/private/tmp/claude-501/-Users-charliexue-School-cs-misc-coffee-chat-automation/3e6ba2ae-c8cd-43e9-99ab-088e6d86a874/scratchpad"]
+trust_level = "trusted"
+
+[projects."/Users/charliexue/School/cs_misc/rl-reasoning-paper"]
+trust_level = "trusted"
+
 [tui]
 status_line = [
     "project-name",
@@ -100,25 +106,25 @@ generate_memories = true
 use_memories = true
 
 [marketplaces.openai-bundled]
-last_updated = "2026-07-14T23:31:11Z"
+last_updated = "2026-07-30T07:19:47Z"
 source_type = "local"
 source = "/Users/charliexue/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-07-15T00:24:21Z"
-last_revision = "972e286f4dbc8e0f53f23d870a1e12192faffafc"
+last_updated = "2026-08-04T03:51:32Z"
+last_revision = "b7e93a4e7c950ba5b22a2bdb9a61e2631f75a51e"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
 [marketplaces.kami]
-last_updated = "2026-07-14T23:53:52Z"
-last_revision = "f97bfc9ef83626edb863f6e42632067047a23601"
+last_updated = "2026-08-03T17:04:03Z"
+last_revision = "fbdb54f59b7f224db55322357e5739b9ef9687f4"
 source_type = "git"
 source = "https://github.com/tw93/kami.git"
 
 [marketplaces.last30days-skill]
-last_updated = "2026-07-14T23:53:59Z"
-last_revision = "4b027919c76e24ac27875c854bfd9f57c0b7cb69"
+last_updated = "2026-08-03T17:04:11Z"
+last_revision = "52f53312ff2f272e16bbc1785e1c04f9d9c19b31"
 source_type = "git"
 source = "https://github.com/mvanhorn/last30days-skill.git"
 
@@ -139,9 +145,6 @@ global = "ghostty"
 
 [plugins."sites@openai-bundled"]
 enabled = false
-
-[plugins."browser@openai-bundled"]
-enabled = true
 
 [plugins."visualize@openai-bundled"]
 enabled = false
@@ -182,6 +185,15 @@ enabled = true
 [plugins."last30days@last30days-skill"]
 enabled = true
 
+[plugins."slack@openai-curated"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."shopify@openai-curated"]
+enabled = true
+
 [mcp_servers.node_repl]
 args = []
 command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
@@ -193,13 +205,14 @@ NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_n
 NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/charliexue/.codex"
 CODEX_HOME = "/Users/charliexue/.codex"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,cf732b4a285497bfd7e75a2ac14879bce9ae644eb4e1babeb17bb6a840dfc9bd"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,e13fd947e846d3d306e9249dd3c73d14931b6494803dbafb16cef85e6add9506"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
 NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS through Computer Use."
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.707.72221"
+BROWSER_USE_CODEX_APP_VERSION = "26.721.41059"
+SKY_CUA_SERVICE_PATH = "/Users/charliexue/.codex/computer-use/Codex Computer Use.app"
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
 
 [mcp_servers.openaiDeveloperDocs]
@@ -218,6 +231,9 @@ enabled = false
 command = "localpen"
 args = ["serve"]
 
+[mcp_servers.betterstack]
+url = "https://mcp.betterstack.com"
+
 [hooks.state]
 
 [hooks.state."/Users/charliexue/.codex/hooks.json:session_start:0:0"]
@@ -231,3 +247,11 @@ trusted_hash = "sha256:afe04d86982e9326b7b95ad99da5f1790c9d5e53ad38beacd460a2b54
 
 [hooks.state."last30days@last30days-skill:hooks/hooks.json:session_start:0:0"]
 trusted_hash = "sha256:493659fe966eddb6bbadee5e4ea27400ffbb12da667cb548855522af9c4a7baa"
+
+[apps.asdk_app_69a1d78e929881919bba0dbda1f6436d]
+enabled = true
+
+[shell_environment_policy.set]
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,e13fd947e846d3d306e9249dd3c73d14931b6494803dbafb16cef85e6add9506"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/charliexue/.codex"
