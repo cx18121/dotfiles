@@ -49,3 +49,18 @@ Non-trivial logic leaves one runnable check behind.
   reimplement common functionality without a clear reason.
 - Make architectural decisions for the long term. Do not accept a stopgap
   that only works for now and is meant to be replaced later.
+
+## Repository work artifacts
+
+- Put agent-created planning and working documents under `docs/` unless the
+  repository or a tool has an established artifact contract. Put
+  implementation specs at `docs/plans/<feature>.md` and their local
+  tracer-bullet tickets at
+  `docs/plans/<feature>/tickets/<NN>-<slug>.md`.
+- Treat `docs/` as a filesystem contract. It may be ignored by Git or linked
+  to a worktree-specific store. Inspect it with filesystem-aware commands;
+  Git status, tracked-file listings, and ignore-aware searches cannot prove
+  that a plan or ticket is absent.
+- Before implementing work in a repository, read the matching local plan and
+  every ticket. Work one unblocked ticket per implementation run unless the
+  user explicitly requests a larger scope.
