@@ -80,6 +80,9 @@ trust_level = "trusted"
 [projects."/Users/charliexue/School/cs_misc/rl-reasoning-paper"]
 trust_level = "trusted"
 
+[projects."/Users/charliexue/School/cs_misc/internship-tracker"]
+trust_level = "trusted"
+
 [tui]
 status_line = [
     "project-name",
@@ -108,25 +111,25 @@ generate_memories = true
 use_memories = true
 
 [marketplaces.openai-bundled]
-last_updated = "2026-07-30T07:19:47Z"
+last_updated = "2026-08-08T20:04:17Z"
 source_type = "local"
 source = "/Users/charliexue/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-08-08T10:23:50Z"
-last_revision = "ffbd6d5a9514c3e05363596161d98cb0f8798f5b"
+last_updated = "2026-08-15T05:23:33Z"
+last_revision = "7f19a36438e68783a960d4096c45d6af97739674"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
 [marketplaces.kami]
-last_updated = "2026-08-08T10:23:55Z"
-last_revision = "2fcc9eca848d71d5b54fbd5682e037379812452e"
+last_updated = "2026-08-08T19:29:03Z"
+last_revision = "8bf6f46f74b5b640fa5612736a5cd24c724b7eca"
 source_type = "git"
 source = "https://github.com/tw93/kami.git"
 
 [marketplaces.last30days-skill]
-last_updated = "2026-08-07T23:03:42Z"
-last_revision = "1004324ad35a3ba656e6df0faabd54749e398455"
+last_updated = "2026-08-14T17:51:33Z"
+last_revision = "c7460f6114449ddfe6ea3fc2f23c3d910c0e740c"
 source_type = "git"
 source = "https://github.com/mvanhorn/last30days-skill.git"
 
@@ -197,24 +200,25 @@ enabled = true
 enabled = true
 
 [mcp_servers.node_repl]
+args = []
 command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
-startup_timeout_sec = 120.0
+startup_timeout_sec = 120
 
 [mcp_servers.node_repl.env]
-BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
-BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.721.41059"
-CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
-CODEX_HOME = "/Users/charliexue/.codex"
-NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
-NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
-NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS through Computer Use."
 NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
 NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
 NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,e13fd947e846d3d306e9249dd3c73d14931b6494803dbafb16cef85e6add9506"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/charliexue/.codex"
+CODEX_HOME = "/Users/charliexue/.codex"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "14e425736668bf21b5b39f2cc022ee8684728617fb5c49f35533c2e349f47193,6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS through Computer Use."
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.721.81911"
 SKY_CUA_SERVICE_PATH = "/Users/charliexue/.codex/computer-use/Codex Computer Use.app"
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
 
 [mcp_servers.openaiDeveloperDocs]
 url = "https://developers.openai.com/mcp"
@@ -241,21 +245,176 @@ url = "https://api.superset.sh/api/v2/agent/mcp"
 [hooks.state]
 
 [hooks.state."/Users/charliexue/.codex/hooks.json:session_start:0:0"]
-trusted_hash = "sha256:53f17ee030a0eb3a41c12dcaf061ddf62e62b9892e1f6d0f9daf7bbd3b5f8c9c"
+trusted_hash = "sha256:84a42fdc3740fdc06c3b59dd663999a437c877af25038f30f32bdccfea018978"
 
 [hooks.state."/Users/charliexue/.codex/hooks.json:user_prompt_submit:0:0"]
-trusted_hash = "sha256:d31482bbabb7cf4adcc1c4cfff5500962b8660f81a29e9e5bd10831098ef6fd9"
+trusted_hash = "sha256:536034a3106960d0391f8ed5ee43493be731207368ff3ec03c15bb72e7adbc95"
 
 [hooks.state."/Users/charliexue/.codex/hooks.json:stop:0:0"]
-trusted_hash = "sha256:afe04d86982e9326b7b95ad99da5f1790c9d5e53ad38beacd460a2b54fb3ef7a"
+trusted_hash = "sha256:320ee23deed6c947e178cc56ec2305023e05be6ea8008cb5bb9b670c6a8a0967"
 
 [hooks.state."last30days@last30days-skill:hooks/hooks.json:session_start:0:0"]
 trusted_hash = "sha256:493659fe966eddb6bbadee5e4ea27400ffbb12da667cb548855522af9c4a7baa"
+
+[hooks.state."/Users/charliexue/.codex/hooks.json:session_start:1:0"]
+trusted_hash = "sha256:77abea9615d83886d678d7ef45f227d86de00c6ec9320a8afd421dd2f1fc04ed"
 
 [apps.asdk_app_69a1d78e929881919bba0dbda1f6436d]
 enabled = true
 
 [shell_environment_policy.set]
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,e13fd947e846d3d306e9249dd3c73d14931b6494803dbafb16cef85e6add9506"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "14e425736668bf21b5b39f2cc022ee8684728617fb5c49f35533c2e349f47193,6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/charliexue/.codex"
+
+[[skills.config]]
+path = "/Users/charliexue/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-investment-committee-memo/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-financial-budget/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-experiment-analysis/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-design-report/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-business-review/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-analytics-dashboard/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.agents/skills/grill-with-docs/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.agents/skills/firecrawl-website-design-clone/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.agents/skills/domain-modeling/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.codex/plugins/cache/openai-bundled/chrome/26.721.81911/skills/control-chrome/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.agents/skills/triage/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.agents/skills/teach/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.agents/skills/superset-standup/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.agents/skills/superset-setup/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.agents/skills/superset-orchestrate/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.agents/skills/superset-mcp/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.agents/skills/superset-feedback/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.agents/skills/superset-doctor/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.agents/skills/superset-contribute/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.agents/skills/superset-automate/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.agents/skills/superset-10x/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.agents/skills/setup-matt-pocock-skills/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-three-statement-forecast/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-team-alignment/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-system-design/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-strategy-memorandum/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-simple-light-mode/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-simple-dark-mode/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-sales-pipeline/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-project-tracker/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-project-kickoff/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-operating-review/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-operating-calendar/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-minimal-letterhead/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-market-trends-report/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-legal-memorandum/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.agents/skills/improve/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/Users/charliexue/.codex/plugins/cache/openai-curated-remote/github/0.1.8-2841cf9749ae/skills/yeet/SKILL.md"
+enabled = false
