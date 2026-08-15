@@ -10,12 +10,10 @@
   },
   "workbench.iconTheme": "material-icon-theme",
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.tabSize": 2,
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter",
     "editor.formatOnSave": true,
-  },  
-  "prettier.requireConfig": true,
+  },
   "workbench.preferredDarkColorTheme": "One Dark Pro",
 }
