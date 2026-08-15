@@ -1,0 +1,46 @@
+onboarding = false
+
+[keys]
+detach = ["prefix+q", "cmd+shift+q"]
+new_workspace = ["prefix+shift+n", "cmd+n"]
+close_workspace = ["prefix+shift+d", "cmd+shift+w"]
+new_tab = ["prefix+c", "cmd+t"]
+previous_tab = ["prefix+p", "cmd+shift+["]
+next_tab = ["prefix+n", "cmd+shift+]"]
+switch_tab = ["prefix+1..9", "cmd+1..9"]
+close_tab = ["prefix+shift+x"]
+split_vertical = ["prefix+v", "cmd+d"]
+split_horizontal = ["prefix+minus", "cmd+shift+d"]
+close_pane = ["prefix+x"]
+focus_pane_left = ["prefix+h", "cmd+["]
+focus_pane_right = ["prefix+l", "cmd+]"]
+focus_pane_up = ["prefix+k", "cmd+alt+up"]
+focus_pane_down = ["prefix+j", "cmd+alt+down"]
+zoom = ["prefix+z", "cmd+shift+enter"]
+
+[[keys.command]]
+key = "cmd+w"
+type = "shell"
+command = "$HOME/.config/herdr/pane-history.mjs close"
+description = "close pane and remember it"
+
+[[keys.command]]
+key = "cmd+shift+t"
+type = "shell"
+command = "$HOME/.config/herdr/pane-history.mjs reopen"
+description = "reopen last closed pane"
+
+[theme]
+name = "tokyo-night"
+auto_switch = false
+
+[ui.toast]
+delivery = "terminal"
+
+[ui]
+show_agent_labels_on_pane_borders = false
+
+status_indicators = "symbols"
+agent_panel_sort = "spaces"
+[experimental]
+kitty_graphics = false
