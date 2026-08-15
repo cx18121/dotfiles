@@ -1,5 +1,7 @@
 # PATH
 export PATH="$HOME/.local/bin:$PATH"
+export EDITOR="$HOME/.local/bin/zed-editor"
+export VISUAL="$EDITOR"
 export PATH="/opt/homebrew/bin:$PATH"
 export PNPM_HOME="/Users/charliexue/Library/pnpm"
 case ":$PATH:" in

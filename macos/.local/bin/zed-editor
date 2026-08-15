@@ -1,0 +1,28 @@
+#!/bin/bash
+
+set -euo pipefail
+
+zed_bin="${ZED_EDITOR_BIN:-/opt/homebrew/bin/zed}"
+line=""
+paths=()
+
+for argument in "$@"; do
+  case "$argument" in
+    +[0-9]*)
+      if [[ -z "$line" ]]; then
+        line="${argument#+}"
+      fi
+      ;;
+    --)
+      ;;
+    *)
+      paths+=("$argument")
+      ;;
+  esac
+done
+
+if [[ -n "$line" && ${#paths[@]} -gt 0 ]]; then
+  paths[0]="${paths[0]}:${line}:1"
+fi
+
+exec "$zed_bin" --wait -- "${paths[@]}"
