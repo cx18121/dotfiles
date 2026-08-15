@@ -15,6 +15,7 @@ window-colorspace = display-p3
 keybind = shift+enter=text:\n
 
 # Let Herdr own terminal-management shortcuts.
+keybind = cmd+l=unbind
 keybind = cmd+n=unbind
 keybind = cmd+t=unbind
 keybind = cmd+w=unbind
