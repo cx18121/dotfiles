@@ -51,10 +51,34 @@ command = "$HOME/.local/libexec/herdr-worktrunk-picker remove"
 description = "remove a Worktrunk worktree"
 
 [[keys.command]]
+key = "cmd+alt+l"
+type = "plugin_action"
+command = "local.layouts.layouts"
+description = "open Layouts"
+
+[[keys.command]]
+key = "cmd+alt+enter"
+type = "plugin_action"
+command = "local.layouts.expand"
+description = "expand the focused pane"
+
+[[keys.command]]
+key = "cmd+alt+b"
+type = "plugin_action"
+command = "local.layouts.balance"
+description = "balance the closest split"
+
+[[keys.command]]
 key = "cmd+alt+r"
 type = "plugin_action"
-command = "local.rotate-split.rotate"
-description = "rotate the current two-pane split"
+command = "local.layouts.rotate"
+description = "rotate the closest split"
+
+[[keys.command]]
+key = "cmd+alt+z"
+type = "plugin_action"
+command = "local.layouts.undo"
+description = "undo the last layout change"
 
 [theme]
 name = "tokyo-night"
