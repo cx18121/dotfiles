@@ -23,13 +23,13 @@ open_worktree = "cmd+alt+o"
 [[keys.command]]
 key = "cmd+w"
 type = "shell"
-command = "$HOME/.config/herdr/pane-history.mjs close"
+command = "$HOME/Projects/personal/herdr-personal/pane-history.mjs close"
 description = "close pane and remember it"
 
 [[keys.command]]
 key = "cmd+shift+t"
 type = "shell"
-command = "$HOME/.config/herdr/pane-history.mjs reopen"
+command = "$HOME/Projects/personal/herdr-personal/pane-history.mjs reopen"
 description = "reopen last closed pane"
 
 [[keys.command]]
