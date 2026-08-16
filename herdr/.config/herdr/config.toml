@@ -78,4 +78,4 @@ rows = [
 ]
 
 [experimental]
-kitty_graphics = false
+kitty_graphics = true
