@@ -1,0 +1,199 @@
+#!/bin/sh
+
+set -eu
+
+export PATH="/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin"
+
+all_volumes=0
+dry_run=0
+assume_yes=0
+cache_max=12gb
+cache_reserve=4gb
+temporary_files=
+
+usage() {
+  cat <<'EOF'
+Usage: docker-cleanup [options]
+
+Remove Docker data that no container is using and limit BuildKit cache growth.
+Running containers, their images, and their volumes are preserved.
+
+Options:
+  --all-volumes  Also remove unused named volumes. This can delete stopped database data.
+  --dry-run      Show the current state and planned cleanup without deleting anything.
+  -y, --yes      Run without asking for confirmation.
+  -h, --help     Show this help.
+EOF
+}
+
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    --all-volumes)
+      all_volumes=1
+      ;;
+    --dry-run)
+      dry_run=1
+      ;;
+    -y|--yes)
+      assume_yes=1
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *)
+      printf 'Unknown option: %s\n\n' "$1" >&2
+      usage >&2
+      exit 2
+      ;;
+  esac
+  shift
+done
+
+cleanup_temporary_files() {
+  for path in $temporary_files; do
+    rm -f "$path"
+  done
+}
+
+interrupted() {
+  printf '\nCleanup was interrupted. Docker may still be finishing the current prune operation.\n' >&2
+  exit 130
+}
+
+trap cleanup_temporary_files EXIT
+trap interrupted INT TERM
+
+for command in docker curl; do
+  if ! command -v "$command" >/dev/null 2>&1; then
+    printf '%s is required.\n' "$command" >&2
+    exit 1
+  fi
+done
+
+docker_host=$(docker context inspect --format '{{.Endpoints.docker.Host}}' 2>/dev/null || true)
+case "$docker_host" in
+  unix://*)
+    docker_socket=${docker_host#unix://}
+    if [ "$(curl --silent --show-error --max-time 5 --unix-socket "$docker_socket" http://localhost/_ping 2>/dev/null || true)" != OK ]; then
+      printf 'Docker did not answer within five seconds. Restart Docker or OrbStack, then try again.\n' >&2
+      exit 1
+    fi
+    ;;
+  *)
+    if ! docker version --format '{{.Server.Version}}' >/dev/null 2>&1; then
+      printf 'Docker is unavailable. Start Docker, then try again.\n' >&2
+      exit 1
+    fi
+    ;;
+esac
+
+active_builds() {
+  if pgrep -f '[d]ocker( buildx)? build|[d]ocker-buildx buildx build' >/dev/null 2>&1; then
+    return 0
+  fi
+
+  running=$(docker buildx history ls --filter status=running --format '{{.Name}}' 2>/dev/null || true)
+  [ -n "$running" ]
+}
+
+require_idle_builder() {
+  if active_builds; then
+    printf 'A Docker build is active. Wait for it to finish, then run docker-cleanup again.\n' >&2
+    exit 1
+  fi
+}
+
+snapshot() {
+  printf 'Containers: %s total, %s running\n' \
+    "$(docker ps -aq | wc -l | tr -d ' ')" \
+    "$(docker ps -q | wc -l | tr -d ' ')"
+  printf 'Images:     %s\n' "$(docker image ls -q | sort -u | wc -l | tr -d ' ')"
+  printf 'Volumes:    %s\n' "$(docker volume ls -q | wc -l | tr -d ' ')"
+  printf 'Networks:   %s\n' "$(docker network ls -q | wc -l | tr -d ' ')"
+  df -h "$HOME" | awk 'NR == 2 { printf "Disk free:   %s\n", $4 }'
+}
+
+run_prune() {
+  label=$1
+  shift
+  output=$(mktemp -t docker-cleanup)
+  temporary_files="$temporary_files $output"
+
+  printf '%s... ' "$label"
+  if "$@" >"$output" 2>&1; then
+    reclaimed=$(grep -E '^(Total reclaimed space:|Total:)' "$output" | tail -1 || true)
+    if [ -n "$reclaimed" ]; then
+      printf '%s\n' "$reclaimed"
+    else
+      printf 'done\n'
+    fi
+    return
+  fi
+
+  if grep -Fq 'a prune operation is already running' "$output"; then
+    printf 'already running\n' >&2
+    printf 'Docker is still finishing an earlier prune operation. Wait for it to finish, then run docker-cleanup again.\n' >&2
+    exit 3
+  fi
+
+  printf 'failed\n' >&2
+  cat "$output" >&2
+  exit 1
+}
+
+require_idle_builder
+
+printf 'Current Docker state\n'
+snapshot
+printf '\nPlanned cleanup\n'
+printf '%s\n' '  Remove all stopped containers.'
+printf '%s\n' '  Remove all images that no container uses.'
+printf '%s\n' '  Remove unused networks.'
+if [ "$all_volumes" -eq 1 ]; then
+  printf '%s\n' '  Remove all unused volumes, including named volumes.'
+  unused_volumes=$(docker volume ls --filter dangling=true --format '{{.Name}}')
+  if [ -n "$unused_volumes" ]; then
+    printf '\nUnused volumes that will be removed\n%s\n' "$unused_volumes"
+  fi
+else
+  printf '%s\n' '  Remove unused anonymous volumes. Keep unused named volumes.'
+fi
+printf '  Keep BuildKit cache at or below %s, with %s reserved.\n' "$cache_max" "$cache_reserve"
+
+if [ "$dry_run" -eq 1 ]; then
+  exit 0
+fi
+
+if [ "$assume_yes" -ne 1 ]; then
+  if [ ! -t 0 ]; then
+    printf 'Confirmation requires a terminal. Pass --yes to run without a prompt.\n' >&2
+    exit 2
+  fi
+  printf '\nContinue? [y/N] '
+  read -r answer
+  case "$answer" in
+    y|Y|yes|YES)
+      ;;
+    *)
+      printf 'Cancelled.\n'
+      exit 0
+      ;;
+  esac
+fi
+
+printf '\n'
+run_prune 'Stopped containers' docker container prune --force
+run_prune 'Unused networks' docker network prune --force
+if [ "$all_volumes" -eq 1 ]; then
+  run_prune 'Unused volumes' docker volume prune --all --force
+else
+  run_prune 'Anonymous volumes' docker volume prune --force
+fi
+require_idle_builder
+run_prune 'Unused images' docker image prune --all --force
+require_idle_builder
+run_prune 'BuildKit cache' docker buildx prune --all --force --max-used-space "$cache_max" --reserved-space "$cache_reserve" --timeout 120s
+
+printf '\nDocker cleanup finished\n'
+snapshot
