@@ -1,0 +1,5 @@
+[list]
+json-schema = 1
+
+[projects."github.com/pango-tech/backend-app".pre-start]
+setup = '"$HOME/.local/libexec/pango-worktree-setup"'
