@@ -1,0 +1,38 @@
+# Herdr configuration for headless Linux hosts.
+#
+# This is deliberately not a copy of the macOS config in ../herdr.
+#
+# Keybindings are absent on purpose. `herdr --remote` sends the local client's
+# keybindings at attach time, so the server's own bindings are unused for the
+# way these hosts are reached. The macOS config's custom command bindings also
+# point at scripts and plugins that exist only on the laptop, and Herdr has no
+# include mechanism to share the portable half.
+#
+# What remains is the portable presentation settings, which are the ones whose
+# absence is actually noticeable over a remote attach.
+
+onboarding = false
+
+[theme]
+name = "tokyo-night"
+auto_switch = false
+
+[ui]
+prompt_new_tab_name = false
+show_agent_labels_on_pane_borders = true
+pane_scrollbars = false
+pane_gaps = true
+status_indicators = "symbols"
+agent_panel_sort = "spaces"
+
+[ui.toast]
+delivery = "terminal"
+
+[ui.sidebar.agents]
+row_gap = 0
+rows = [
+  ["state_icon", "$pr", "state_text"],
+]
+
+[experimental]
+kitty_graphics = true
