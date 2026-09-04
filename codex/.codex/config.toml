@@ -1,5 +1,5 @@
 model = "gpt-5.6-sol"
-model_reasoning_effort = "medium"
+model_reasoning_effort = "xhigh"
 notify = [
     "/Users/charliexue/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient",
     "turn-ended",
@@ -83,6 +83,12 @@ trust_level = "trusted"
 [projects."/Users/charliexue/School/cs_misc/internship-tracker"]
 trust_level = "trusted"
 
+[projects."/Users/charliexue/.pi/agent/tmp/skill-runtime-recheck"]
+trust_level = "trusted"
+
+[projects."/Users/charliexue/Projects/clubs/genai/sparrow"]
+trust_level = "trusted"
+
 [tui]
 status_line = [
     "project-name",
@@ -116,20 +122,20 @@ source_type = "local"
 source = "/Users/charliexue/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-08-15T05:23:33Z"
-last_revision = "7f19a36438e68783a960d4096c45d6af97739674"
+last_updated = "2026-09-04T06:46:52Z"
+last_revision = "1dd995193ba20bba51ca6c681aa8d3398dbd80a2"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
 [marketplaces.kami]
-last_updated = "2026-08-08T19:29:03Z"
-last_revision = "8bf6f46f74b5b640fa5612736a5cd24c724b7eca"
+last_updated = "2026-08-26T01:57:05Z"
+last_revision = "68c1dfad6e757047357efdcf13269ec6e820f899"
 source_type = "git"
 source = "https://github.com/tw93/kami.git"
 
 [marketplaces.last30days-skill]
-last_updated = "2026-08-14T17:51:33Z"
-last_revision = "c7460f6114449ddfe6ea3fc2f23c3d910c0e740c"
+last_updated = "2026-08-26T01:57:08Z"
+last_revision = "d05389d39b2ce09a13f71b01e68562f077c766df"
 source_type = "git"
 source = "https://github.com/mvanhorn/last30days-skill.git"
 
@@ -245,7 +251,7 @@ url = "https://api.superset.sh/api/v2/agent/mcp"
 [hooks.state]
 
 [hooks.state."/Users/charliexue/.codex/hooks.json:session_start:0:0"]
-trusted_hash = "sha256:84a42fdc3740fdc06c3b59dd663999a437c877af25038f30f32bdccfea018978"
+trusted_hash = "sha256:77abea9615d83886d678d7ef45f227d86de00c6ec9320a8afd421dd2f1fc04ed"
 
 [hooks.state."/Users/charliexue/.codex/hooks.json:user_prompt_submit:0:0"]
 trusted_hash = "sha256:536034a3106960d0391f8ed5ee43493be731207368ff3ec03c15bb72e7adbc95"
@@ -257,7 +263,13 @@ trusted_hash = "sha256:320ee23deed6c947e178cc56ec2305023e05be6ea8008cb5bb9b670c6
 trusted_hash = "sha256:493659fe966eddb6bbadee5e4ea27400ffbb12da667cb548855522af9c4a7baa"
 
 [hooks.state."/Users/charliexue/.codex/hooks.json:session_start:1:0"]
-trusted_hash = "sha256:77abea9615d83886d678d7ef45f227d86de00c6ec9320a8afd421dd2f1fc04ed"
+trusted_hash = "sha256:84a42fdc3740fdc06c3b59dd663999a437c877af25038f30f32bdccfea018978"
+
+[hooks.state."/Users/charliexue/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:029e866640cbefcb540d3e843d4c178ef03af9425edac6770c100df36af47467"
+
+[hooks.state."/Users/charliexue/.codex/hooks.json:stop:1:0"]
+trusted_hash = "sha256:55f06b4873e1664abd3bc0758a21489f13a0e8c42e24cd2bcea858b7d0378ad7"
 
 [apps.asdk_app_69a1d78e929881919bba0dbda1f6436d]
 enabled = true
