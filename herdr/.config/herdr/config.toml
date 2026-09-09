@@ -40,14 +40,14 @@ description = "open file viewer"
 
 [[keys.command]]
 key = "cmd+shift+o"
-type = "shell"
-command = "$HOME/.local/libexec/herdr-worktrunk-picker open"
+type = "plugin_action"
+command = "worktrunk.open"
 description = "open or create a Worktrunk worktree"
 
 [[keys.command]]
 key = "cmd+shift+r"
-type = "shell"
-command = "$HOME/.local/libexec/herdr-worktrunk-picker remove"
+type = "plugin_action"
+command = "worktrunk.remove"
 description = "remove a Worktrunk worktree"
 
 [[keys.command]]
