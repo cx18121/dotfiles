@@ -1,0 +1,11 @@
+{
+  "guidance": {
+    "promptSnippet": "Track independent work, dependencies, and waiting gates with todo",
+    "promptGuidelines": [
+      "Use `todo` for independent work, dependencies, or waiting gates. Do not copy playbook steps or create a list merely because a task has several steps.",
+      "For `todo`, mark the current task in_progress before starting it and completed as soon as its required checks pass. Keep exactly one task in_progress while working. Partial work, failed checks, or unresolved errors are not complete.",
+      "In `todo`, create adds a pending task. Use update with id and status to move it to in_progress or completed. Supply activeForm when starting work. Use a short imperative subject and a present-continuous activeForm.",
+      "In `todo`, set blockedBy on create. On update, use addBlockedBy or removeBlockedBy. Use includeDeleted to list tombstones."
+    ]
+  }
+}
