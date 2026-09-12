@@ -7,6 +7,30 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "preferred_line_length": 80,
+  "relative_line_numbers": "disabled",
+  "allow_rewrap": "anywhere",
+  "soft_wrap": "editor_width",
+  "terminal": {
+    "shell": "system"
+  },
+  "proxy": "",
+  "format_on_save": "on",
+  "toolbar": {
+    "quick_actions": true,
+    "selections_menu": true,
+    "agent_review": true,
+    "code_actions": false
+  },
+  "minimap": {
+    "show": "never"
+  },
+  "which_key": {
+    "delay_ms": 1000,
+    "enabled": false
+  },
+  "text_rendering_mode": "platform_default",
+  "accessible_mode": false,
   "cli_default_open_behavior": "new_window",
   "project_panel": {
     "dock": "left"
@@ -54,7 +78,7 @@
   "session": {
     "trust_all_worktrees": true,
   },
-  "base_keymap": "VSCode",
+  "base_keymap": "Zed",
   "ui_font_size": 16,
   "buffer_font_size": 15,
   "theme": {

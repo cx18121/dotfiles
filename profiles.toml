@@ -53,8 +53,7 @@ packages = [
 [profiles.linux]
 description = "Headless agent host. No Homebrew and no GUI applications."
 tool_sets = ["base"]
-# zig builds Herdr's vendored libghostty-vt from Charlie's fork.
-tools = ["zig@0.15.2"]
+tools = ["herdr@latest"]
 packages = [
   "git",
   "herdr-linux",

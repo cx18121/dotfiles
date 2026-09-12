@@ -117,13 +117,13 @@ generate_memories = true
 use_memories = true
 
 [marketplaces.openai-bundled]
-last_updated = "2026-08-08T20:04:17Z"
+last_updated = "2026-09-07T15:37:28Z"
 source_type = "local"
 source = "/Users/charliexue/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-09-04T06:46:52Z"
-last_revision = "1dd995193ba20bba51ca6c681aa8d3398dbd80a2"
+last_updated = "2026-09-08T18:56:59Z"
+last_revision = "5c80307d32bfdbba990dc39c194dbc0fea33ed5f"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
