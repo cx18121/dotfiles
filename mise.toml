@@ -12,6 +12,9 @@ min_version = "2026.9.9"
 "~/.pi/agent" = { source = "pi/.pi/agent", mode = "symlink-each", manifest = "git" }
 "~/.config/rpiv-todo/config.json" = { source = "pi/.config/rpiv-todo/config.json", mode = "symlink" }
 
+[bootstrap.hooks.pre-tools]
+run = 'install -m 0644 "{{ config_root }}/managed/mise.lock" "$HOME/.config/mise/mise.lock"'
+
 [tasks.bootstrap]
 description = "Install and verify the personal development environment"
 run = "./scripts/bootstrap"

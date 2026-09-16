@@ -12,7 +12,6 @@ case "$profile" in
     ;;
 esac
 
-install -m 0644 "$root/managed/mise.lock" "$HOME/.config/mise/mise.lock"
 mise -C "$HOME" install --locked
 
 if [[ "$profile" == "macos" ]]; then
