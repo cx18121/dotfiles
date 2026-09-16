@@ -1,0 +1,17 @@
+[bootstrap.packages]
+"brew:git" = "latest"
+
+[bootstrap.mise_shell_activate]
+zprofile = "shims"
+
+[dotfiles]
+"~/.claude" = { source = "claude/.claude", mode = "symlink-each", manifest = "git" }
+"~/.codex" = { source = "codex/.codex", mode = "symlink-each", manifest = "git" }
+"~/.config/ghostty" = { source = "ghostty/.config/ghostty", mode = "symlink-each", manifest = "git" }
+"~/.local/bin/docker-cleanup" = { source = "macos/.local/bin/docker-cleanup", mode = "symlink" }
+"~/.local/bin/zed-editor" = { source = "macos/.local/bin/zed-editor", mode = "symlink" }
+"~/.local/libexec/pango-worktree-setup" = { source = "macos/.local/libexec/pango-worktree-setup", mode = "symlink" }
+"~/.config/starship.toml" = { source = "starship/.config/starship.toml", mode = "symlink" }
+"~/.config/worktrunk/config.toml" = { source = "worktrunk/.config/worktrunk/config.toml", mode = "symlink" }
+"~/.config/zed/settings.json" = { source = "zed/.config/zed/settings.json", mode = "symlink" }
+"~/.zshrc" = { source = "zsh/.zshrc", mode = "symlink" }

@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+profile=${1:-${MISE_ENV:-}}
+case "$profile" in
+  macos|linux) ;;
+  *)
+    printf 'usage: %s {macos|linux}\n' "$0" >&2
+    exit 2
+    ;;
+esac
+
+root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+if ! cmp -s "$root/managed/mise.lock" "$HOME/.config/mise/mise.lock"; then
+  printf 'The global mise lockfile is not current.\n' >&2
+  exit 1
+fi
+
+if ! mise ls --current --json | jq -e \
+  'all(.[]; length == 1 and .[0].installed and .[0].active and .[0].version == .[0].requested_version)' \
+  >/dev/null; then
+  printf 'One or more mise tools are missing or not at the requested version.\n' >&2
+  exit 1
+fi
+
+missing=0
+for command in node bun pnpm go rustc uv gh rg fd pi herdr wt terraform; do
+  if ! command -v "$command" >/dev/null 2>&1; then
+    printf 'Missing command: %s\n' "$command" >&2
+    missing=1
+  fi
+done
+
+for repo in pi-personal herdr-personal agent-skills personal-cloud; do
+  path="$HOME/Projects/personal/$repo"
+  if [[ ! -d "$path/.git" ]]; then
+    printf 'Missing repository: %s\n' "$path" >&2
+    missing=1
+  fi
+done
+
+mise -C "$HOME/Projects/personal/pi-personal" run check -- "$profile"
+mise -C "$HOME/Projects/personal/herdr-personal" run check -- "$profile"
+
+if (( missing )); then
+  exit 1
+fi
+
+printf 'Personal development environment is ready for %s.\n' "$profile"

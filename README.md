@@ -1,54 +1,76 @@
-# dotfiles
+# Personal development environment
 
-Configuration for every machine I use, in one place.
+This repository is the entry point for setting up every machine I use. Mise installs the tools, repositories, shell integration, and dotfiles selected by the `macos` or `linux` environment. App repositories own their own internal setup and expose bootstrap and check tasks that this project calls.
 
 ## Set up a machine
 
+Install the mise version required by this repository:
+
 ```bash
-git clone git@github.com:cx18121/dotfiles.git ~/dotfiles
-~/dotfiles/install.sh --profile macos
+MISE_VERSION=v2026.9.9 curl -fsSL https://mise.run | sh
 ```
 
-Use `--profile linux` on a headless host. `./install.sh --list` shows what exists.
+Then bootstrap a Mac:
 
-The script installs mise if it is missing, pins that profile's tools, runs the
-Brewfile when the profile names one, and links that profile's packages with
-stow. It is safe to rerun. On a machine that already matches its profile it
-changes nothing.
+```bash
+~/.local/bin/mise bootstrap \
+  --from https://github.com/cx18121/dotfiles.git \
+  --from-dir "$HOME/dotfiles" \
+  -E macos \
+  --locked \
+  --yes
+```
 
-Useful flags: `--dry-run`, `--no-tools`, `--no-packages`, `--no-brew`.
+Use `-E linux` for an Ubuntu or other supported Linux development host.
 
-## How it is organised
+For an existing checkout:
 
-Every directory is a stow package whose contents mirror `$HOME`, so
-`git/.gitignore_global` links to `~/.gitignore_global`.
+```bash
+mise -C ~/dotfiles -E macos bootstrap --locked
+```
 
-`profiles.toml` decides what a machine gets. A profile names its tools and its
-packages, and can inherit a shared tool set. Machines differ by selecting
-different packages, never by keeping a second copy of the same file. When a
-config genuinely differs between platforms it becomes a separate package, which
-is why `herdr` and `herdr-linux` both exist.
+Preview or inspect the selected environment without changing it:
 
-Nothing is auto-detected. A machine gets exactly the profile you name, so a new
-one cannot silently inherit the wrong set.
+```bash
+mise -C ~/dotfiles -E macos bootstrap --dry-run
+mise -C ~/dotfiles -E macos bootstrap status
+mise -C ~/dotfiles -E macos run check -- macos
+```
 
-## Who owns what
+## What it owns
 
-Homebrew keeps what mise cannot express: casks, VS Code extensions, and native
-libraries such as `sdl2`, `grpc`, `protobuf`, `ffmpeg`, and `mactex`.
+`mise.toml` contains repositories, dotfiles, and the final bootstrap task. `managed/mise-tools.toml` is linked into mise's global configuration so the exact tools are available from every directory. `mise.macos.toml` and `mise.linux.toml` contain only platform-specific composition.
 
-mise keeps language runtimes and CLI tools. Anything pinned in a tool set must
-not also come from another installer on that machine, or PATH order decides
-which copy runs and the two drift apart.
+- Mise owns versioned development tools on both platforms.
+- Mise's native dotfile manager links configuration into the home directory.
+- Homebrew owns macOS applications and native libraries through `brew/Brewfile`.
+- `pi-personal` owns Pi extensions and generated platform settings.
+- `herdr-personal` owns Herdr configuration, personal commands, and pinned plugins.
+- `agent-skills` owns shared reusable skills.
+- `personal-cloud` owns AWS infrastructure and host-specific safety controls.
 
-The `macos` profile deliberately opts out of the shared tool set. On that
-machine node comes from fnm, rust from rustup, bun from its own installer, and
-the rest from Homebrew. Adopting the set there is a deliberate migration, not
-something a config run should do behind your back.
+Credentials, authentication sessions, caches, terminal sessions, run history, and personal data are deliberately excluded.
 
-## Known gaps
+## Pi local overlay
 
-- `zsh` is tracked but not in any profile. The live `~/.zshrc` is a real file
-  that has drifted from the copy here. Reconcile them before linking it.
-- `superset` and `vscode` are stored for reference only. Their paths are not
-  stow shaped, so linking them would create `~/themes/` and `~/settings.json`.
+Portable Pi settings live in `pi-personal`. A machine can add packages or override preferences without committing machine-specific paths by creating:
+
+```text
+~/.config/pi/settings.local.json
+```
+
+See `pi-personal/config/settings.local.example.json` for the supported shape.
+
+## Updating
+
+Update repositories and reapply the selected environment:
+
+```bash
+mise -C ~/dotfiles -E macos bootstrap --update --locked
+```
+
+Change exact tool versions in `managed/mise-tools.toml`, then refresh `managed/mise.lock` with `mise lock --global` for the supported platforms.
+
+## Stored for reference only
+
+`superset` and `vscode` remain historical settings. They are not applied by the bootstrap.

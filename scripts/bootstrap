@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+profile=${MISE_ENV:-}
+
+case "$profile" in
+  macos|linux) ;;
+  *)
+    printf 'Run this bootstrap with -E macos or -E linux.\n' >&2
+    exit 2
+    ;;
+esac
+
+install -m 0644 "$root/managed/mise.lock" "$HOME/.config/mise/mise.lock"
+mise -C "$HOME" install --locked
+
+if [[ "$profile" == "macos" ]]; then
+  if ! command -v brew >/dev/null 2>&1; then
+    printf 'Homebrew is required for the macOS application and native-library bundle.\n' >&2
+    exit 1
+  fi
+  brew bundle --no-upgrade --file "$root/brew/Brewfile"
+fi
+
+for repo in pi-personal herdr-personal agent-skills; do
+  path="$HOME/Projects/personal/$repo"
+  if [[ ! -d "$path/.git" ]]; then
+    printf 'Missing bootstrap repository: %s\n' "$path" >&2
+    exit 1
+  fi
+done
+
+mise -C "$HOME/Projects/personal/pi-personal" run bootstrap -- "$profile"
+mise -C "$HOME/Projects/personal/herdr-personal" run bootstrap -- "$profile"
+
+skills_dir="$HOME/.agents/skills"
+shared_skills="$HOME/Projects/personal/agent-skills/skills"
+mkdir -p "$skills_dir"
+
+while IFS= read -r target; do
+  source=$(readlink "$target")
+  if [[ "$source" == "$shared_skills/"* && ! -d "$source" ]]; then
+    rm "$target"
+  fi
+done < <(find "$skills_dir" -mindepth 1 -maxdepth 1 -type l -print)
+
+while IFS= read -r source; do
+  name=$(basename "$source")
+  target="$skills_dir/$name"
+  if [[ -e "$target" && ! -L "$target" ]]; then
+    printf 'Leaving unmanaged skill in place: %s\n' "$target" >&2
+    continue
+  fi
+  ln -sfn "$source" "$target"
+done < <(find "$shared_skills" -mindepth 1 -maxdepth 1 -type d -print | sort)
+
+mise -C "$root" run check -- "$profile"

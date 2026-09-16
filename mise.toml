@@ -1,0 +1,22 @@
+min_version = "2026.9.9"
+
+[bootstrap.repos]
+"~/Projects/personal/pi-personal" = { url = "https://github.com/cx18121/pi-personal.git" }
+"~/Projects/personal/herdr-personal" = { url = "https://github.com/cx18121/herdr-personal.git" }
+"~/Projects/personal/agent-skills" = { url = "https://github.com/cx18121/agent-skills.git" }
+"~/Projects/personal/personal-cloud" = { url = "https://github.com/cx18121/personal-cloud.git" }
+
+[dotfiles]
+"~/.config/mise/config.toml" = { source = "managed/mise-global.toml", mode = "symlink" }
+"~/.config/mise/conf.d/personal-tools.toml" = { source = "managed/mise-tools.toml", mode = "symlink" }
+"~/.gitignore_global" = { source = "git/.gitignore_global", mode = "symlink" }
+"~/.pi/agent" = { source = "pi/.pi/agent", mode = "symlink-each", manifest = "git" }
+"~/.config/rpiv-todo/config.json" = { source = "pi/.config/rpiv-todo/config.json", mode = "symlink" }
+
+[tasks.bootstrap]
+description = "Install and verify the personal development environment"
+run = "./scripts/bootstrap"
+
+[tasks.check]
+description = "Verify the personal development environment"
+run = "./scripts/check"
