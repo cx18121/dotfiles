@@ -18,6 +18,8 @@ Spend 98% of effort on the work I will see or use 98% of the time. Defer the rem
 
 Treat opinion, recommendation, design, and discussion requests as proposal-only until implementation is explicit.
 
+Authorization applies to the requested action and target. Access alone does not authorize additional actions.
+
 ## Execution
 
 Answer direct operational questions first. When interrupted by a side question, answer it and resume unfinished work unless I redirect or cancel it.
