@@ -31,7 +31,11 @@ for command in node bun pnpm go rustc uv gh rg fd pi herdr wt terraform; do
   fi
 done
 
-for repo in pi-personal herdr-personal agent-skills personal-cloud; do
+repos=(pi-personal herdr-personal agent-skills)
+if [[ "$profile" == "macos" ]]; then
+  repos+=(personal-cloud)
+fi
+for repo in "${repos[@]}"; do
   path="$HOME/Projects/personal/$repo"
   if [[ ! -d "$path/.git" ]]; then
     printf 'Missing repository: %s\n' "$path" >&2
