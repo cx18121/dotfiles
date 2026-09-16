@@ -4,7 +4,6 @@ min_version = "2026.9.9"
 "~/Projects/personal/pi-personal" = { url = "https://github.com/cx18121/pi-personal.git" }
 "~/Projects/personal/herdr-personal" = { url = "https://github.com/cx18121/herdr-personal.git" }
 "~/Projects/personal/agent-skills" = { url = "https://github.com/cx18121/agent-skills.git" }
-"~/Projects/personal/personal-cloud" = { url = "https://github.com/cx18121/personal-cloud.git" }
 
 [dotfiles]
 "~/.config/mise/config.toml" = { source = "managed/mise-global.toml", mode = "symlink" }

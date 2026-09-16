@@ -1,6 +1,9 @@
 [bootstrap.packages]
 "brew:git" = "latest"
 
+[bootstrap.repos]
+"~/Projects/personal/personal-cloud" = { url = "https://github.com/cx18121/personal-cloud.git" }
+
 [bootstrap.mise_shell_activate]
 zprofile = "shims"
 
