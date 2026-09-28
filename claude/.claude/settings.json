@@ -1,0 +1,56 @@
+{
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "allow": [
+      "mcp__pencil"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/charliexue/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "worktree": {
+    "baseRef": "head"
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "sh /Users/charliexue/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "codex@openai-codex": true,
+    "context7@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "linear@claude-plugins-official": true,
+    "slack@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
+      },
+      "autoUpdate": true
+    }
+  },
+  "effortLevel": "medium",
+  "tui": "default",
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark",
+  "preferredNotifChannel": "auto",
+  "skipAutoPermissionPrompt": true
+}

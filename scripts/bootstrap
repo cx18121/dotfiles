@@ -33,25 +33,27 @@ done
 mise -C "$HOME/Projects/personal/pi-personal" run bootstrap -- "$profile"
 mise -C "$HOME/Projects/personal/herdr-personal" run bootstrap -- "$profile"
 
-skills_dir="$HOME/.agents/skills"
 shared_skills="$HOME/Projects/personal/agent-skills/skills"
-mkdir -p "$skills_dir"
 
-while IFS= read -r target; do
-  source=$(readlink "$target")
-  if [[ "$source" == "$shared_skills/"* && ! -d "$source" ]]; then
-    rm "$target"
-  fi
-done < <(find "$skills_dir" -mindepth 1 -maxdepth 1 -type l -print)
+for skills_dir in "$HOME/.agents/skills" "$HOME/.claude/skills"; do
+  mkdir -p "$skills_dir"
 
-while IFS= read -r source; do
-  name=$(basename "$source")
-  target="$skills_dir/$name"
-  if [[ -e "$target" && ! -L "$target" ]]; then
-    printf 'Leaving unmanaged skill in place: %s\n' "$target" >&2
-    continue
-  fi
-  ln -sfn "$source" "$target"
-done < <(find "$shared_skills" -mindepth 1 -maxdepth 1 -type d -print | sort)
+  while IFS= read -r target; do
+    source=$(readlink "$target")
+    if [[ "$source" == "$shared_skills/"* && ! -d "$source" ]]; then
+      rm "$target"
+    fi
+  done < <(find "$skills_dir" -mindepth 1 -maxdepth 1 -type l -print)
+
+  while IFS= read -r source; do
+    name=$(basename "$source")
+    target="$skills_dir/$name"
+    if [[ -e "$target" && ! -L "$target" ]]; then
+      printf 'Leaving unmanaged skill in place: %s\n' "$target" >&2
+      continue
+    fi
+    ln -sfn "$source" "$target"
+  done < <(find "$shared_skills" -mindepth 1 -maxdepth 1 -type d -print | sort)
+done
 
 mise -C "$root" run check -- "$profile"
