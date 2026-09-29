@@ -89,7 +89,7 @@ case "$docker_host" in
 esac
 
 active_builds() {
-  if pgrep -f '[d]ocker( buildx)? build|[d]ocker-buildx buildx build' >/dev/null 2>&1; then
+  if pgrep -f '(^|[/[:space:]])[d]ocker(-buildx)?([[:space:]]+buildx)?[[:space:]]+build([[:space:]]|$)' >/dev/null 2>&1; then
     return 0
   fi
 
