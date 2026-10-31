@@ -9,7 +9,6 @@ min_version = "2026.9.9"
 "~/.config/mise/config.toml" = { source = "managed/mise-global.toml", mode = "symlink" }
 "~/.config/mise/conf.d/personal-tools.toml" = { source = "managed/mise-tools.toml", mode = "symlink" }
 "~/.gitignore_global" = { source = "git/.gitignore_global", mode = "symlink" }
-"~/.pi/agent" = { source = "pi/.pi/agent", mode = "symlink-each", manifest = "git" }
 "~/.config/rpiv-todo/config.json" = { source = "pi/.config/rpiv-todo/config.json", mode = "symlink" }
 
 [bootstrap.hooks.pre-tools]
