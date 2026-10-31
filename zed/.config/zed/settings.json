@@ -61,7 +61,7 @@
     },
     "provider": "copilot"
   },
-  "autosave": "on_focus_change",
+  "autosave": "off",
   "drag_and_drop_selection": {
     "enabled": false,
     "delay": 300
