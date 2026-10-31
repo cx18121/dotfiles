@@ -1,2 +1,8 @@
+[settings]
+minimum_release_age = "0s"
+
 [settings.github]
 credential_command = 'gh auth token --hostname "$MISE_CREDENTIAL_HOST"'
+
+[tools]
+bun = "1.4.0"
