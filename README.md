@@ -69,7 +69,15 @@ Update repositories and reapply the selected environment:
 mise -C ~/dotfiles -E macos bootstrap --update --locked
 ```
 
-Change exact tool versions in `managed/mise-tools.toml`, then refresh `managed/mise.lock` with `mise lock --global` for the supported platforms.
+`managed/mise-tools.toml` lists tools as `latest`, and `managed/mise.lock` holds the exact versions every machine installs. To upgrade every tool:
+
+```bash
+mise lock --global --bump
+cp ~/.config/mise/mise.lock ~/dotfiles/managed/mise.lock
+mise -C ~/dotfiles -E macos bootstrap --locked
+```
+
+Then commit the lockfile. To hold a tool back, give it an exact version in `managed/mise-tools.toml` with a comment saying why.
 
 ## Stored for reference only
 

@@ -5,7 +5,10 @@ lockfile_version = 2
 [[tools.bun]]
 version = "1.4.0"
 backend = "core:bun"
-specifiers = ["1.4.0"]
+specifiers = [
+    "1.4.0",
+    "latest",
+]
 
 [tools.bun."platforms.linux-arm64"]
 checksum = "sha256:4b1a332ee861983eb93bcfe6f770fff94e3e31b2c388bdaea3c8ed35e58eed0e"
@@ -46,7 +49,10 @@ url = "https://github.com/oven-sh/bun/releases/download/bun-v1.4.0/bun-darwin-x6
 [[tools.fd]]
 version = "10.4.2"
 backend = "aqua:sharkdp/fd"
-specifiers = ["10.4.2"]
+specifiers = [
+    "10.4.2",
+    "latest",
+]
 
 [tools.fd."platforms.linux-arm64"]
 checksum = "sha256:6c51f7c5446b3338b1e401ff15dc194c590bb2fa64fd43ff3278300f073adec5"
@@ -86,7 +92,10 @@ url_api = "https://api.github.com/repos/sharkdp/fd/releases/assets/370661116"
 [[tools.gh]]
 version = "2.98.0"
 backend = "aqua:cli/cli"
-specifiers = ["2.98.0"]
+specifiers = [
+    "2.98.0",
+    "latest",
+]
 
 [tools.gh."platforms.linux-arm64"]
 checksum = "sha256:cf689084f3a3618f7eae4a2420d335d74626d65f5e594b9828d125d69f800d86"
@@ -145,7 +154,10 @@ provenance = "github-attestations"
 [[tools.go]]
 version = "1.26.5"
 backend = "core:go"
-specifiers = ["1.26.5"]
+specifiers = [
+    "1.26.5",
+    "latest",
+]
 
 [tools.go."platforms.linux-arm64"]
 checksum = "sha256:fe4789e92b1f33358680864bbe8704289e7bb5fc207d80623c308935bd696d49"
@@ -186,7 +198,10 @@ url = "https://dl.google.com/go/go1.26.5.darwin-amd64.tar.gz"
 [[tools.herdr]]
 version = "0.9.4"
 backend = "aqua:herdrdev/herdr"
-specifiers = ["0.9.4"]
+specifiers = [
+    "0.9.4",
+    "latest",
+]
 
 [tools.herdr."platforms.linux-arm64"]
 checksum = "sha256:9511cb70982c1ef115f232058e7ed7cf9640aa5a2c0ca78934cefda3aeb093fd"
@@ -236,7 +251,10 @@ url_api = "https://api.github.com/repos/herdrdev/herdr/releases/assets/637474391
 [[tools.node]]
 version = "24.21.0"
 backend = "core:node"
-specifiers = ["24.21.0"]
+specifiers = [
+    "24.21.0",
+    "latest",
+]
 
 [tools.node."platforms.linux-arm64"]
 checksum = "sha256:724282c3b43aec998aa9527380465b45d229e021b58035f5f4f63095eabfe5d5"
@@ -283,7 +301,10 @@ specifiers = ["0.38.2"]
 [[tools.pi]]
 version = "1.4.0"
 backend = "aqua:earendil-works/pi"
-specifiers = ["1.4.0"]
+specifiers = [
+    "1.4.0",
+    "latest",
+]
 
 [tools.pi."platforms.linux-arm64"]
 checksum = "sha256:fa5829c7ef83ffeaebba015715c8306220f89b2aa8a00154efbba98dd5440156"
@@ -333,7 +354,10 @@ url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/663978
 [[tools.pnpm]]
 version = "11.20.0"
 backend = "aqua:pnpm/pnpm"
-specifiers = ["11.20.0"]
+specifiers = [
+    "11.20.0",
+    "latest",
+]
 
 [tools.pnpm."platforms.linux-arm64"]
 checksum = "sha256:f00fc2041bb41742b7943bf2bb24183ad20320e8384824a8031eb94edf2f57a5"
@@ -380,7 +404,10 @@ provenance = "github-attestations"
 [[tools.rg]]
 version = "15.2.0"
 backend = "aqua:BurntSushi/ripgrep"
-specifiers = ["15.2.0"]
+specifiers = [
+    "15.2.0",
+    "latest",
+]
 
 [tools.rg."platforms.linux-arm64"]
 checksum = "sha256:a740b91c82eaf9914cfedd353572f2791cbe0162c84101ee0951058f4dcbc90d"
@@ -430,7 +457,10 @@ url_api = "https://api.github.com/repos/BurntSushi/ripgrep/releases/assets/47811
 [[tools.rust]]
 version = "1.97.1"
 backend = "core:rust"
-specifiers = ["1.97.1"]
+specifiers = [
+    "1.97.1",
+    "latest",
+]
 
 [[tools.terraform]]
 version = "1.5.7"
@@ -474,68 +504,71 @@ checksum = "sha256:b310ec0e626e9799000cfc8e30247cd827cf7f8030c8e0400257c7f111e93
 url = "https://releases.hashicorp.com/terraform/1.5.7/terraform_1.5.7_darwin_amd64.zip"
 
 [[tools.uv]]
-version = "0.11.7"
+version = "0.11.28"
 backend = "aqua:astral-sh/uv"
-specifiers = ["0.11.7"]
+specifiers = ["latest"]
 
 [tools.uv."platforms.linux-arm64"]
-checksum = "sha256:f2ee1cde9aabb4c6e43bd3f341dadaf42189a54e001e521346dc31547310e284"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.7/uv-aarch64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/397306019"
+checksum = "sha256:03e9fe0a81b0718d0bc84625de3885df6cc3f89a8b6af6121d6b9f6113fb6533"
+url = "https://github.com/astral-sh/uv/releases/download/0.11.28/uv-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/469655712"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-arm64-musl"]
-checksum = "sha256:46647dc16cbb7d6700f762fdd7a67d220abe18570914732bc310adc91308d272"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.7/uv-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/397306022"
+checksum = "sha256:da10cdfa7d92212b7acb62021a0fd61bcf8580c58c3632ec915d10c3a1a7906b"
+url = "https://github.com/astral-sh/uv/releases/download/0.11.28/uv-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/469655715"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-x64"]
-checksum = "sha256:6681d691eb7f9c00ac6a3af54252f7ab29ae72f0c8f95bdc7f9d1401c23ea868"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.7/uv-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/397306063"
+checksum = "sha256:e490a6464492183c5d4534a5527fb4440f7f2bb2f228162ad7e4afe076dc0224"
+url = "https://github.com/astral-sh/uv/releases/download/0.11.28/uv-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/469655822"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-x64-baseline"]
-checksum = "sha256:6681d691eb7f9c00ac6a3af54252f7ab29ae72f0c8f95bdc7f9d1401c23ea868"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.7/uv-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/397306063"
+checksum = "sha256:e490a6464492183c5d4534a5527fb4440f7f2bb2f228162ad7e4afe076dc0224"
+url = "https://github.com/astral-sh/uv/releases/download/0.11.28/uv-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/469655822"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-x64-musl"]
-checksum = "sha256:64ddb5f1087649e3f75aa50d139aa4f36ddde728a5295a141e0fa9697bfb7b0f"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.7/uv-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/397306071"
+checksum = "sha256:f02146b371c35c287d860f003ece7345c86e358a3fd70a9b63700cd141ee7fb4"
+url = "https://github.com/astral-sh/uv/releases/download/0.11.28/uv-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/469655835"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:64ddb5f1087649e3f75aa50d139aa4f36ddde728a5295a141e0fa9697bfb7b0f"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.7/uv-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/397306071"
+checksum = "sha256:f02146b371c35c287d860f003ece7345c86e358a3fd70a9b63700cd141ee7fb4"
+url = "https://github.com/astral-sh/uv/releases/download/0.11.28/uv-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/469655835"
 provenance = "github-attestations"
 
 [tools.uv."platforms.macos-arm64"]
-checksum = "sha256:66e37d91f839e12481d7b932a1eccbfe732560f42c1cfb89faddfa2454534ba8"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.7/uv-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/397306011"
+checksum = "sha256:33540eb7c883ab857eff79bd5ac2aa31fe27b595abecb4a9c003a2c998447232"
+url = "https://github.com/astral-sh/uv/releases/download/0.11.28/uv-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/469655699"
 provenance = "github-attestations"
 
 [tools.uv."platforms.macos-x64"]
-checksum = "sha256:0a4bc8fcde4974ea3560be21772aeecab600a6f43fa6e58169f9fa7b3b71d302"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.7/uv-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/397306059"
+checksum = "sha256:2ad79983127ffca7d77b77ce6a24278d7e4f7b817a1acf72fea5f8124b4aac5e"
+url = "https://github.com/astral-sh/uv/releases/download/0.11.28/uv-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/469655811"
 provenance = "github-attestations"
 
 [tools.uv."platforms.macos-x64-baseline"]
-checksum = "sha256:0a4bc8fcde4974ea3560be21772aeecab600a6f43fa6e58169f9fa7b3b71d302"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.7/uv-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/397306059"
+checksum = "sha256:2ad79983127ffca7d77b77ce6a24278d7e4f7b817a1acf72fea5f8124b4aac5e"
+url = "https://github.com/astral-sh/uv/releases/download/0.11.28/uv-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/469655811"
 provenance = "github-attestations"
 
 [[tools.worktrunk]]
 version = "0.77.0"
 backend = "aqua:max-sixty/worktrunk"
-specifiers = ["0.77.0"]
+specifiers = [
+    "0.77.0",
+    "latest",
+]
 
 [tools.worktrunk."platforms.linux-arm64"]
 checksum = "sha256:d96a6a217255962d487e9a92d12d00478f3afcb9cf31f796dd2406340127e237"

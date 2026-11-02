@@ -17,9 +17,10 @@ if ! cmp -s "$root/managed/mise.lock" "$HOME/.config/mise/mise.lock"; then
 fi
 
 if ! mise ls --current --json | jq -e \
-  'all(.[]; length == 1 and .[0].installed and .[0].active and .[0].version == .[0].requested_version)' \
+  'all(.[]; length == 1 and .[0].installed and .[0].active)' \
   >/dev/null; then
-  printf 'One or more mise tools are missing or not at the requested version.\n' >&2
+  # With the lockfile current, mise resolves each tool to its locked version.
+  printf 'One or more mise tools are missing or not at the locked version.\n' >&2
   exit 1
 fi
 
