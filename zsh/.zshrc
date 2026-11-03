@@ -47,3 +47,14 @@ setup-cs3410() {
     curl -fsSL https://raw.githubusercontent.com/cs3410/cs3410-infra/main/.vscode/c_cpp_properties.json \
       -o .vscode/c_cpp_properties.json
 }
+
+# Dotfiles tasks from any directory: dot upgrade, dot pi, dot bootstrap, dot check.
+dot() {
+  local profile=linux
+  [[ $OSTYPE == darwin* ]] && profile=macos
+  case ${1:-} in
+    "") mise -C ~/dotfiles -E "$profile" tasks ;;
+    bootstrap) shift; mise -C ~/dotfiles -E "$profile" bootstrap --locked "$@" ;;
+    *) mise -C ~/dotfiles -E "$profile" run "$@" ;;
+  esac
+}

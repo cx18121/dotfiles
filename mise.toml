@@ -21,3 +21,11 @@ run = "./scripts/bootstrap"
 [tasks.check]
 description = "Verify the personal development environment"
 run = "./scripts/check"
+
+[tasks.upgrade]
+description = "Upgrade every tool, reapply the environment, and update Pi extensions"
+run = "./scripts/upgrade"
+
+[tasks.pi]
+description = "Upgrade Pi, reapply the environment, and update Pi extensions"
+run = "./scripts/upgrade pi"

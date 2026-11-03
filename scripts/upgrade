@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Upgrade tools pinned as "latest": all of them, or only the ones named.
+root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+profile=${MISE_ENV:-}
+case "$profile" in
+  macos|linux) ;;
+  *) printf 'Run this upgrade with -E macos or -E linux.\n' >&2; exit 2 ;;
+esac
+
+mise -C "$HOME" lock --global --bump "$@"
+install -m 0644 "$HOME/.config/mise/mise.lock" "$root/managed/mise.lock"
+mise -C "$root" -E "$profile" bootstrap --locked
+mise -C "$HOME/Projects/personal/pi-personal" run update -- "$profile"

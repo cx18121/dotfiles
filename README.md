@@ -63,21 +63,16 @@ See `pi-personal/config/settings.local.example.json` for the supported shape.
 
 ## Updating
 
-Update repositories and reapply the selected environment:
+Update repositories and reapply the selected environment with `dot bootstrap --update`.
 
-```bash
-mise -C ~/dotfiles -E macos bootstrap --update --locked
-```
+`managed/mise-tools.toml` lists tools as `latest`, and `managed/mise.lock` holds the exact versions every machine installs. The `dot` shell function runs these from any directory:
 
-`managed/mise-tools.toml` lists tools as `latest`, and `managed/mise.lock` holds the exact versions every machine installs. To upgrade every tool:
+- `dot upgrade` moves every tool to its newest version, reapplies the environment, and updates Pi extensions.
+- `dot pi` does the same for Pi only.
+- `dot bootstrap` reapplies the environment at the locked versions.
+- `dot check` verifies the whole setup.
 
-```bash
-mise lock --global --bump
-cp ~/.config/mise/mise.lock ~/dotfiles/managed/mise.lock
-mise -C ~/dotfiles -E macos bootstrap --locked
-```
-
-Then commit the lockfile. To hold a tool back, give it an exact version in `managed/mise-tools.toml` with a comment saying why.
+Commit `managed/mise.lock` after an upgrade. To hold a tool back, give it an exact version in `managed/mise-tools.toml` with a comment saying why.
 
 ## Stored for reference only
 
