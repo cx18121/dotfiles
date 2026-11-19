@@ -1,9 +1,6 @@
 model = "gpt-5.6-sol"
 model_reasoning_effort = "xhigh"
-notify = [
-    "/Users/charliexue/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient",
-    "turn-ended",
-]
+notify = [ "/Users/charliexue/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended" ]
 service_tier = "default"
 personality = "pragmatic"
 approvals_reviewer = "user"
@@ -90,15 +87,7 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [tui]
-status_line = [
-    "project-name",
-    "pull-request-number",
-    "branch-changes",
-    "model-with-reasoning",
-    "context-used",
-    "permissions",
-    "task-progress",
-]
+status_line = [ "project-name", "pull-request-number", "branch-changes", "model-with-reasoning", "context-used", "permissions", "task-progress" ]
 status_line_use_colors = true
 pet = "disabled"
 
@@ -234,13 +223,13 @@ url = "https://mcp.linear.app/mcp"
 
 [mcp_servers.computer-use]
 command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
-args = ["mcp"]
+args = [ "mcp" ]
 cwd = "."
 enabled = false
 
 [mcp_servers.localpen]
 command = "localpen"
-args = ["serve"]
+args = [ "serve" ]
 
 [mcp_servers.betterstack]
 url = "https://mcp.betterstack.com"
@@ -248,7 +237,9 @@ url = "https://mcp.betterstack.com"
 [mcp_servers.superset]
 url = "https://api.superset.sh/api/v2/agent/mcp"
 
-[hooks.state]
+[mcp_servers.pencil]
+command = "/Applications/Pen.app/Contents/Resources/app.asar.unpacked/out/mcp-server-darwin-arm64"
+args = [ "--app", "desktop", "--agent", "codexCLI" ]
 
 [hooks.state."/Users/charliexue/.codex/hooks.json:session_start:0:0"]
 trusted_hash = "sha256:77abea9615d83886d678d7ef45f227d86de00c6ec9320a8afd421dd2f1fc04ed"
@@ -430,3 +421,7 @@ enabled = false
 [[skills.config]]
 path = "/Users/charliexue/.codex/plugins/cache/openai-curated-remote/github/0.1.8-2841cf9749ae/skills/yeet/SKILL.md"
 enabled = false
+
+[mcp_servers.posthog]
+url = "https://mcp.posthog.com/mcp"
+startup_timeout_sec = 30
