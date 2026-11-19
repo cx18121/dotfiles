@@ -1,0 +1,22 @@
+define rerun
+  python
+import gdb
+import shlex
+import subprocess
+
+if gdb.selected_inferior().pid:
+    raise gdb.GdbError("The program is still running. Use continue or kill first.")
+program = gdb.current_progspace().filename
+if not program:
+    raise gdb.GdbError("Open a program with qdb first.")
+args = shlex.split(gdb.parameter("args") or "")
+subprocess.Popen(["qemu", "-g", "1234", program, *args])
+  end
+  target remote localhost:1234
+  continue
+end
+
+document rerun
+Restart the current program in QEMU after it exits, keeping breakpoints.
+Use set args to specify arguments for subsequent runs.
+end

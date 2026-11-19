@@ -18,7 +18,7 @@ alias python='python3'
 alias pip='pip3'
 alias ls='lsd'
 alias codex='codex --yolo'
-alias rv='docker run -i --init --rm -v "$PWD:/root" ghcr.io/sampsyo/cs3410-infra'
+alias rv='docker run --platform linux/amd64 -i --init --rm -v "$PWD:/root" -e XDG_CONFIG_HOME=/etc/xdg --mount type=bind,source="$HOME/dotfiles/cs3410/gdbinit",target=/etc/xdg/gdb/gdbinit,readonly ghcr.io/sampsyo/cs3410-infra'
 
 # Completions
 fpath=(/opt/homebrew/share/zsh-completions $fpath)
@@ -47,6 +47,8 @@ setup-cs3410() {
     curl -fsSL https://raw.githubusercontent.com/cs3410/cs3410-infra/main/.vscode/c_cpp_properties.json \
       -o .vscode/c_cpp_properties.json
 }
+
+alias rv-debug='docker run --platform linux/amd64 -it --rm --init --name testing --ulimit core=-1 --mount type=bind,source="$PWD"/,target="$PWD"/ -v "$PWD":/root -e XDG_CONFIG_HOME=/etc/xdg --mount type=bind,source="$HOME/dotfiles/cs3410/gdbinit",target=/etc/xdg/gdb/gdbinit,readonly ghcr.io/sampsyo/cs3410-infra'
 
 # Dotfiles tasks from any directory: dot upgrade, dot pi, dot bootstrap, dot check.
 dot() {
