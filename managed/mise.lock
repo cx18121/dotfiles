@@ -290,6 +290,11 @@ aube = { path = "locks/npm-agent-browser/0.38.2", digest = "sha256:0b2ff7be21112
 backend = "npm:agent-browser"
 specifiers = ["0.38.2"]
 
+[[tools."npm:pyright"]]
+version = "1.1.414"
+backend = "npm:pyright"
+specifiers = ["1.1.414"]
+
 [[tools.pi]]
 version = "1.5.2"
 backend = "aqua:earendil-works/pi"

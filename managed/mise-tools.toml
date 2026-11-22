@@ -2,6 +2,7 @@
 node = "latest"
 # Exact: mise 2026.9.9 cannot lock npm tools whose version is "latest".
 "npm:agent-browser" = "0.38.2"
+"npm:pyright" = "1.1.414"
 bun = "latest"
 pnpm = "latest"
 go = "latest"
