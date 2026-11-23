@@ -74,6 +74,3 @@ Update repositories and reapply the selected environment with `dot bootstrap --u
 
 Commit `managed/mise.lock` after an upgrade. To hold a tool back, give it an exact version in `managed/mise-tools.toml` with a comment saying why.
 
-## Stored for reference only
-
-`superset` and `vscode` remain historical settings. They are not applied by the bootstrap.
