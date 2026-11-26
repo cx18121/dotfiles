@@ -9,6 +9,7 @@
       "mcp__pencil"
     ]
   },
+  "model": "opus",
   "hooks": {
     "SessionStart": [
       {
@@ -57,11 +58,16 @@
     }
   },
   "effortLevel": "medium",
+  "modelSettings": {
+    "claude-fable-5-2": {
+      "effortLevel": "xhigh"
+    }
+  },
   "tui": "default",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
   "preferredNotifChannel": "auto",
   "switchModelsOnFlag": true,
   "skipAutoPermissionPrompt": true,
-  "model": "claude-opus-4-6"
+  "autoMemoryEnabled": false
 }
