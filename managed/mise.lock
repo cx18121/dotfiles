@@ -292,6 +292,7 @@ specifiers = ["0.38.2"]
 
 [[tools."npm:pyright"]]
 version = "1.1.414"
+aube = { path = "locks/npm-pyright/1.1.414", digest = "sha256:69cd62e5613c907964fbb78b05a85eb9d12a503285d716f6529144cc884cf656" }
 backend = "npm:pyright"
 specifiers = ["1.1.414"]
 
