@@ -2,7 +2,7 @@
 
 ## CLAUDE.md
 
-Global rules for all projects, symlinked to `~/.claude/CLAUDE.md`.
+Global rules for all projects are owned by `pi-personal` (`modules/cxstack/AGENTS.md`) and symlinked to `~/.claude/CLAUDE.md` by `pi-personal/scripts/bootstrap`.
 
 ## statusline-command.sh
 
